@@ -142,6 +142,8 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
  
+" Theme settings for colorizing
+set bg=dark
  
 "------------------------------------------------------------
 " Mappings {{{1
