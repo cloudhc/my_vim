@@ -14,7 +14,40 @@
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
- 
+
+" Disable syntax highlighting
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" support syntax highlight
+Plugin 'posva/vim-vue'
+
+" support scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
+
+" support scrooloose/syntastic
+Plugin 'scrooloose/syntastic'
+
+" support vim-airline'
+Plugin 'vim-airline/vim-airline'
+
+" support vim-gitgutter
+Plugin 'airblade/vim-gitgutter'
+
+" support vim-fugitive
+Plugin 'tpope/vim-fugitive'
+
+" support nanotech/jellybeans.vim
+Plugin 'nanotech/jellybeans.vim'
+
+call vundle#end()
+
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
@@ -153,7 +186,10 @@ set bg=dark
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$
- 
+
+" NERDTree ON 단축키를 '\nt' 로 설정
+map <Leader>nt <ESC>:NERDTree<CR>
+
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
@@ -208,3 +244,5 @@ endfunction
 
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <expr> <CR> pumvisible() ? "<C-Y><CR>" : "<CR>"
+
+nnoremap <F5> :!ctags -R<CR>
