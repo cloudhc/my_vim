@@ -25,6 +25,32 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" autocompletion (also a linter - diagnostics)
+Plugin 'Valloric/YouCompleteMe'
+
+" ale - linter / autocompletion / formatter
+Plugin 'w0rp/ale'
+
+" auto formatter
+Plugin 'rhysd/vim-clang-format'
+
+" nerd tree
+Plugin 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" surround vim
+Plugin 'tpope/vim-surround'
+
+" nerd commenter
+Plugin 'scrooloose/nerdcommenter'
+
+" enhanced highlight
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
+" ctags indexer
+Plugin 'vim-scripts/DfrankUtil'
+Plugin 'vim-scripts/vimprj'
+Plugin 'vim-scripts/indexer.tar.gz'
+
 " support syntax highlight
 Plugin 'posva/vim-vue'
 
@@ -246,3 +272,124 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <expr> <CR> pumvisible() ? "<C-Y><CR>" : "<CR>"
 
 nnoremap <F5> :!ctags -R<CR>
+
+" ################ NERDTree #########################
+
+" shift+i (show hidden files)
+
+" ctrl+n open/closes nerd tree
+noremap <C-n> :NERDTreeToggle<CR>
+
+" quit nerd tree on file open
+let g:NERDTreeQuitOnOpen = 1
+
+" show nerd tree always on the right instead on the left
+let g:NERDTreeWinPos = "right"
+
+
+" ################ Clang complete ###################
+
+"let g:clang_use_library = 1
+"let g:clang_library_path='/usr/lib/llvm-5.0/lib/libclang.so.1'
+"let g:clang_periodic_quickfix=1
+"let g:clang_auto_select = 1
+
+"let g:clang_snippets = 1
+"let g:clang_snippets_engine = 'ultisnips'
+
+" I don't know how to change the keybindings to navigate
+" the 'completion suggestions menu' with ctrl+k and ctrl+l
+"inoremap <C-k> <Down>
+"inoremap <C-l> <Up>
+
+" ################ YouCompleteMe ####################
+
+let g:ycm_show_diagnostics_ui = 0
+
+let g:ycm_key_list_select_completion = ['<C-k>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-l>', '<Up>']
+let g:SuperTabDefaulCompletionType = '<C-k>'
+
+" disable annoying ycm confirmation
+let g:ycm_confirm_extra_conf = 0
+
+" add path to ycm_extra_conf.py (you could also copy the file in the home folder)
+" delete '...98' argument from .ycm_extra_conf.py, otherwise syntastic does
+" not work properly
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
+
+" ################ Ale ##############################
+
+" autocompletion
+let g:ale_completion_enabled = 1
+
+let g:ale_cpp_clang_executable = 'clang++-5.0'
+
+" linter
+let g:ale_linters = {
+            \   'cpp': ['clang']
+            \}
+let g:ale_cpp_clang_options = '-std=c++1z -O0 -Wextra -Wall -Wpedantic -I /usr/include/eigen3'
+"let g:ale_cpp_clangtidy_options = '-checks="cppcoreguidelines-*"'
+"let g:ale_cpp_cpplint_options = ''
+"let g:ale_cpp_gcc_options = ''
+"let g:ale_cpp_clangcheck_options = ''
+"let g:ale_cpp_cppcheck_options = ''
+
+
+" ################ Clang format #####################
+
+" Clang format - auto formatting
+
+let g:clang_format#command = 'clang-format-3.8'
+let g:clang_format#style_options = {
+            \ "BreakBeforeBraces" : "Attach",
+            \ "UseTab" : "Never",
+            \ "IndentWidth" : 4,
+            \ "ColumnLimit" : 100,
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "false",
+            \ "AllowShortFunctionsOnASingleLine" : "false",
+            \}
+
+" shortcuts for autoformatting the entire file: Ctrl+j
+inoremap <C-j> <Esc>:ClangFormat<CR>a
+nnoremap <C-j> <Esc>:ClangFormat<CR>
+
+
+" ################ A ################################
+
+" A - switching between files
+
+" header / source
+nnoremap <F4> :A<CR>
+inoremap <F4> <ESC>:A<CR>a
+
+" file under cursor
+nnoremap <F2> :IH<CR>
+inoremap <F2> <ESC>:IH<CR>
+
+
+" ################ Easymotion #######################
+
+" shift the keys 1 to the right so they match my jklč config
+map <leader><leader>j <Plug>(easymotion-linebackward)
+map <leader><leader>k <Plug>(easymotion-j)
+map <leader><leader>l <Plug>(easymotion-k)
+map <leader><leader>č <Plug>(easymotion-lineforward)
+
+
+" ################ CTAGS ############################
+
+" TODO: learn more about this plugin and improve it
+
+" change the stack pop to a more comfortable mapping
+nnoremap <C-e> <C-]>
+
+" CTAGS indexer
+let g:indexer_disableCtagsWarning = 1
+
+
+" TODO: add (cmake) project support
+" TODO: add debugger support
