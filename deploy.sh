@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cp -rf .vim* ~/
+cp -Rf .vim* ~/

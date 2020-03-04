@@ -14,6 +14,7 @@
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
+set encoding=utf-8
 
 " Disable syntax highlighting
 filetype off
@@ -35,13 +36,19 @@ Plugin 'w0rp/ale'
 Plugin 'rhysd/vim-clang-format'
 
 " nerd tree
-Plugin 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
+Plugin 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" nerd commenter
+Plugin 'scrooloose/nerdcommenter'
+
+" support scrooloose/syntastic
+Plugin 'scrooloose/syntastic'
 
 " surround vim
 Plugin 'tpope/vim-surround'
 
-" nerd commenter
-Plugin 'scrooloose/nerdcommenter'
+" support vim-fugitive
+Plugin 'tpope/vim-fugitive'
 
 " enhanced highlight
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -54,20 +61,11 @@ Plugin 'vim-scripts/indexer.tar.gz'
 " support syntax highlight
 Plugin 'posva/vim-vue'
 
-" support scrooloose/nerdtree'
-Plugin 'scrooloose/nerdtree'
-
-" support scrooloose/syntastic
-Plugin 'scrooloose/syntastic'
-
 " support vim-airline'
 Plugin 'vim-airline/vim-airline'
 
 " support vim-gitgutter
 Plugin 'airblade/vim-gitgutter'
-
-" support vim-fugitive
-Plugin 'tpope/vim-fugitive'
 
 " support nanotech/jellybeans.vim
 Plugin 'nanotech/jellybeans.vim'
