@@ -19,6 +19,9 @@ set encoding=utf-8
 " Disable syntax highlighting
 filetype off
 
+" set ColorScheme by default
+colorscheme default
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -50,6 +53,9 @@ Plugin 'tpope/vim-surround'
 " support vim-fugitive
 Plugin 'tpope/vim-fugitive'
 
+" support vim-sensible
+Plugin 'tpope/vim-sensible'
+
 " enhanced highlight
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
@@ -69,6 +75,9 @@ Plugin 'airblade/vim-gitgutter'
 
 " support nanotech/jellybeans.vim
 Plugin 'nanotech/jellybeans.vim'
+
+" support vim-indent-guiles
+Plugin 'nathanaelkane/vim-indent-guides'
 
 call vundle#end()
 
@@ -391,3 +400,17 @@ let g:indexer_disableCtagsWarning = 1
 
 " TODO: add (cmake) project support
 " TODO: add debugger support
+
+
+" ############### Indent Guides ####################
+
+"let g:indent_guides_color_change_percent = 3
+"hi IndentGuidesOdd  guibg=red   ctermbg=3
+"hi IndentGuidesEven guibg=green ctermbg=4
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=darkgrey ctermbg=252
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=251
+
