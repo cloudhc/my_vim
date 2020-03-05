@@ -79,6 +79,12 @@ Plugin 'nanotech/jellybeans.vim'
 " support vim-indent-guiles
 Plugin 'nathanaelkane/vim-indent-guides'
 
+" support tabnine-vim
+Plugin 'zxqfl/tabnine-vim'
+
+" suport vim-rainbow
+Plugin 'frazrepo/vim-rainbow'
+
 call vundle#end()
 
 " Attempt to determine the type of a file based on its name and possibly its
@@ -414,3 +420,9 @@ let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=darkgrey ctermbg=252
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=251
 
+
+" ################# Vim-Rainbow ####################
+
+au FileType c,cpp,objc,objcpp,go,rb,py,php call rainbow#load()
+
+let g:rainbow_active = 1
